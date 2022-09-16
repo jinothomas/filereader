@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "dist/express-be",
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "esModuleInterop": true, 
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+    },
+    "include": [
+        "src/express-be/**/**.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
