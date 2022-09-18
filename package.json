@@ -12,27 +12,31 @@
     "express:build": "npm run express:compile && npm run express:run",
     "express:clean": "cd dist & rmdir /s /q hapi",
     "express:compile": "tsc -p ./tsconfig.express.json",
-    "express:run": "node ./dist/express-be/index.js"
+    "express:run": "node ./dist/express-be/index.js",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.2.0",
+    "@angular/cdk": "^14.2.2",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
     "@angular/core": "^14.2.0",
     "@angular/forms": "^14.2.0",
+    "@angular/material": "^14.2.2",
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
     "body-parser": "^1.20.0",
+    "bootstrap": "^5.2.1",
     "concurrently": "^7.3.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "mongodb": "^4.9.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "rxjs": "~7.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.3",
