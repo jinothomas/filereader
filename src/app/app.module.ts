@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -19,6 +19,7 @@ import { DialogBoxComponent } from "./fileoperations/components/dialog-box/dialo
 import { UploadfileComponent } from "./fileoperations/components/upload-file/uploadfile.component";
 import { ProfileComponent } from './fileoperations/components/profile/profile.component';
 import { HomeComponent } from './fileoperations/components/home/home.component';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent],
@@ -36,7 +37,9 @@ import { HomeComponent } from './fileoperations/components/home/home.component';
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,14 @@
+{
+    "/filereader/*": {
+        "target": "http://localhost:8080",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/services/collector/event": {
+        "target": "https://splunk-http-b.t-mobile.com:8088",
+        "changeOrigin": true,
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

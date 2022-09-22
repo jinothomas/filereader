@@ -1,13 +1,35 @@
 
 <div class="page-title"><h1>Upload File</h1></div>
 
-<div class="upload-tool"><label>Insert file here (.csv)</label><input type="file" #csvReader name="Upload CSV" id="txtFileUpload" color="primary"/></div>
-<div class="container text-center">
+<div class="upload-tool"><label>Insert file here (.csv)</label><input #fileinput type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="selectFile($event)"/>
+  <button mat-button [disabled]="!selectedFiles" (click)="upload()" >
+    Upload
+  </button>
+  <button mat-button  (click)="clearInput()" >
+    <mat-icon style="color:white">refresh</mat-icon>
+  </button>
+</div>
+
+<div class="progress my-3">
+  <div
+    class="progress-bar progress-bar-info progress-bar-striped"
+    role="progressbar"
+    attr.aria-valuenow="{{ progress }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: progress + '%' }"
+  >
+    {{ progress }}%
+  </div>
+</div>
+
+<div class="container text-center"></div>
 
 <div class="no-content" *ngIf="dataSource.length==0">
     <h2 class="no-records">No Records Available!</h2>
     <label class="upload-tool">Sorry, No records are found. You can start by uploading a file</label>
-</div>  
+</div> 
+
   <table *ngIf="dataSource.length > 0" mat-table [dataSource]="dataSource" #mytable class="my-table mat-elevation-z8">
   
       <!--- Note that these columns can be defined in any order.
@@ -38,4 +60,3 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
    <!-- <button mat-button (click)="openDialog('Add',{})" mat-flat-button color="primary">Add Row</button> -->
-  </div>

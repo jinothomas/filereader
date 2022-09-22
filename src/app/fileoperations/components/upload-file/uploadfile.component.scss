@@ -23,4 +23,17 @@ label{
 
 table {
     width: 100%;
+    position: relative;
 }
+
+.mat-button {
+    background-color: rgb(0 43 92);
+    color: rgb(255, 255, 255);
+    margin-left: 10px;
+ }
+ 
+ .mat-button-disabled {
+    background-color: rgb(91, 119, 151);
+    color: rgb(167, 164, 164) !important;
+    margin-left: 10px;
+ }
