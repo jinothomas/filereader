@@ -2,7 +2,8 @@ import express from 'express';
 import os from 'os';
 import multer  from 'multer';
 import { FileOperationsService } from '../service/fileoperations.service';
-import { STATUS_CODES } from 'src/express-be/shared/utils/response-handler';
+import { handleHttpError,  } from '../../shared/utils/response-handler';
+import { STATUS_CODES } from '../../shared/models/shared.enums';
 
 
 
@@ -17,23 +18,15 @@ fileoperations.get('/files', (request, response, next) => {
 
 fileoperations.post('/uploadfile', upload.single('file'),(request: any, response: any)=> {
     try {
-        if(request.file == undefined) {
-            return response.send({
-                status : STATUS_CODES.NOT_FOUND,
-                message: '[ERROR] File not found'
-            })
-        }
-        fileopsService.parseCSVFile(request.file);
+      if (request.file == undefined) {
         return response.send({
-            message: '[INFO] File uploaded successfully'
+          status: STATUS_CODES.NOT_FOUND,
+          message: "[ERROR] File not found",
         });
-
-    }catch(error: any) {
-        const message = `Error occured file uploading: ${error}`; 
-        console.error(message);
-        response.send({
-            message
-        });
+      }
+      return response.send(fileopsService.parseCSVFile(request.file));
+    } catch (error) {
+        handleHttpError(error);
     }
 });
 

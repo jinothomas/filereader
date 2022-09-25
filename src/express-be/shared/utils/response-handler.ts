@@ -1,21 +1,7 @@
 import { Observable, throwError } from 'rxjs';
+import { STATUS_CODES } from '../models/shared.enums';
 import { FileReaderResponse } from '../models/shared.model';
 
-
-export enum STATUS_CODES {
-    OK = 200,
-    CREATED = 201,
-    ACCEPTED = 202,
-    BAD_REQUEST = 400,
-    UNAUTHORIZED = 401,
-    FORBIDDEN = 403,
-    NOT_FOUND = 404,
-    METHOD_NOT_ALLOWED = 405,
-    UNSUPPORTED_MEDIA_TYPE = 415,
-    INTERNAL_SEVER_ERROR = 500,
-    NOT_IMPLEMENTED = 501,
-    INSUFFICIENT_STORAGE = 507
-}
 
 
 export function handleResponse(input : any) : FileReaderResponse {

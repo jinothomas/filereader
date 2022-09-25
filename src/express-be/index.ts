@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 
 import fileoperations from './fileoperations/routes/fileoperations.routes';
-import * as mongo from './shared/utils/db.connector';
+import { mongodbConnection } from './shared/utils/db.connector';
 import { handleHttpError } from './shared/utils/response-handler';
 
 
@@ -13,7 +13,7 @@ const prefix: string = '/filereader';
 dotenv.config();
 
 const start = () => {
-    mongo.mongodbConnection().then(()=>{
+    mongodbConnection().then(()=>{
         application.listen(port,()=>{
             console.log(`[INFO] Express Backend server is up [port: ${port}]`);
             addroutes(application);
