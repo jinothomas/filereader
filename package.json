@@ -10,7 +10,7 @@
     "test": "ng test",
     "ui:serve": "ng serve",
     "express:build": "npm run express:compile && npm run express:run",
-    "express:clean": "cd dist & rmdir /s /q hapi",
+    "express:clean": "cd dist & rmdir /s /q express-be",
     "express:compile": "tsc -p ./tsconfig.express.json",
     "express:run": "node ./dist/express-be/index.js",
     "postinstall": "ngcc"
@@ -30,6 +30,7 @@
     "body-parser": "^1.20.0",
     "bootstrap": "^5.2.1",
     "concurrently": "^7.3.0",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "fs": "0.0.1-security",

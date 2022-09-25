@@ -1,6 +1,6 @@
 import * as mongoDB  from 'mongodb';
 import * as dotenv from "dotenv";
-import { handleHttpError } from './error-handler';
+
 
 const connectionString =  'mongodb://localhost:27017/filereader';
 const databasename =  'filereader';
@@ -16,8 +16,8 @@ export async function mongodbConnection () {
   const client: mongoDB.MongoClient = new mongoDB.MongoClient(connectionString);
           
   await client.connect().catch((error: any)=> {
-    handleHttpError(error); 
-  })
+    
+  });
       
   const db: mongoDB.Db = client.db(databasename);
  
