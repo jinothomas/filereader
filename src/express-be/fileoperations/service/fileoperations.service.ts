@@ -8,7 +8,7 @@ const fileOperationsRepository = new FileOperationsRepository();
 
 export class FileOperationsService {
 
-    parseCSVFile = (file: any) => {
+    parseCSVFile = async (file: any) => {
       const results: any = [];
       try {
         fs.createReadStream(file.path)
@@ -24,5 +24,8 @@ export class FileOperationsService {
       } 
     }
 
+    getFileMetaData = (page_no: number, page_size: number) => {
+      return fileOperationsRepository.getMetaData(page_no,page_size);
+    }
 
 }

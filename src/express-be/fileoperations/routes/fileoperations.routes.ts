@@ -11,14 +11,22 @@ const fileopsService = new FileOperationsService();
 const upload = multer({ dest: os.tmpdir() });
 const fileoperations = express.Router();
 
-fileoperations.get('/files', (request, response, next) => {
-    response.send("get filepaths");
+fileoperations.get('/files', (request : any, response: any) => {
+    const page_no = request.params.page_no;
+    const page_size = request.params.page_size;
+    
+    fileopsService.getFileMetaData(page_no,page_size).then((data: any)=> {
+      response.send(data);
+    }).catch((error)=> {
+      response.send(error);
+    })
+    
 });
 
 
 fileoperations.post('/uploadfile', upload.single('file'),(request: any, response: any)=> {
     try {
-      if (request.file == undefined) {
+      if (!request.file) {
         return response.send({
           status: STATUS_CODES.NOT_FOUND,
           message: "[ERROR] File not found",
@@ -29,5 +37,6 @@ fileoperations.post('/uploadfile', upload.single('file'),(request: any, response
         handleHttpError(error);
     }
 });
+
 
 export default fileoperations;

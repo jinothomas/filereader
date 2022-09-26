@@ -49,3 +49,19 @@ export interface Role {
   role_priority: number,
   role_scopes: [ROLE_SCOPES]
 }
+
+export interface MetadataResponse {
+  records : any,
+  status: STATUS_CODES,
+  status_text : string,
+  no_of_records: number,
+  total_records?: number
+}
+
+
+export interface UploadFileResponse {
+  body: string,
+  status: STATUS_CODES.CREATED,
+  status_text : string,
+  message: string,
+}

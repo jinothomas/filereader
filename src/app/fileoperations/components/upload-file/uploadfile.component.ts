@@ -117,8 +117,10 @@ export class UploadfileComponent {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
-              this.fileInfos = this.fileopsService.getFiles();
+              if (event.status==200) {
+                this.message = "File uploaded Successfully"
+              }
+              this.fileInfos = this.fileopsService.getFiles(0,10);
             }
           },
           (err: any) => {
