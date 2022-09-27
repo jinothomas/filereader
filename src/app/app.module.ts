@@ -15,14 +15,16 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDividerModule } from '@angular/material/divider';
+import { MatPaginatorModule  } from '@angular/material/paginator';
 import { DialogBoxComponent } from "./fileoperations/components/dialog-box/dialog-box.component";
 import { UploadfileComponent } from "./fileoperations/components/upload-file/uploadfile.component";
 import { ProfileComponent } from './fileoperations/components/profile/profile.component';
 import { HomeComponent } from './fileoperations/components/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
+import { FileContentComponent } from './fileoperations/components/file-content/file-content.component';  
 
 @NgModule({
-  declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent],
+  declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent, FileContentComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -34,6 +36,7 @@ import { HttpClientModule } from "@angular/common/http";
     MatInputModule,
     MatButtonModule,
     MatInputModule,
+    MatPaginatorModule, 
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,

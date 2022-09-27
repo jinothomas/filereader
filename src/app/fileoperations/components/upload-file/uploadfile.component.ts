@@ -1,46 +1,58 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-
+import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { FileOperationsService } from '../../services/fileoperations/fileoperations.service';
+import {MatTableDataSource} from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-
-export interface UsersData {
-  name: string;
-  id: number;
-}
-
-const ELEMENT_DATA: UsersData[] = [
-  {id: 1560608769632, name: 'Artificial Intelligence'},
-  {id: 1560608796014, name: 'Machine Learning'},
-  {id: 1560608787815, name: 'Robotic Process Automation'},
-  {id: 1560608805101, name: 'Blockchain'}
-];
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploadfile',
   templateUrl: './uploadfile.component.html',
   styleUrls: ['./uploadfile.component.scss']
 })
-export class UploadfileComponent {
+export class UploadfileComponent implements AfterViewInit{
+  
 
-  displayedColumns: string[] = ['id', 'name', 'action'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns1: string[] = ['id', 'name', 'action'];
+  displayedColumns: string[] = ['file_id', 'file_name', 'created_on','created_by','file_size','accessmodifier','action'];
+  dataSource = new MatTableDataSource<any>(); 
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
   message = '';
+  records: any;
+  showTable: boolean = true;
+  pageSize: number = 10;
+  currentPage: number = 0;
+  recordCount: number = 50;
+  pageSizeOptions: number[] = [10, 25, 50];
 
   fileInfos?: Observable<any>;
 
   @ViewChild(MatTable,{static:true}) table?: MatTable<any>;
 
+  @ViewChild('paginator') paginator: MatPaginator | any;
+
   @ViewChild('fileinput')
   fileinput?: ElementRef;
 
-  constructor(public dialog: MatDialog, private fileopsService: FileOperationsService) {}
+  constructor(public dialog: MatDialog, private fileopsService: FileOperationsService , private router: Router) {
+    this.fileopsService.getFiles(this.currentPage,this.pageSize).subscribe((event: any)=>{
+      if(event.status==200) {
+        this.dataSource = event.body? event.body.records: [];
+        this.pageSize = event.body?.no_of_records;
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = 42;
+      }
+    });
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator ? this.paginator : null;
+  }
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
@@ -69,38 +81,35 @@ export class UploadfileComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if( result.event == 'Add'){
-        this.addRowData(result.data);
-      }else if(result.event == 'Update'){
-        this.updateRowData(result.data);
-      }else if(result.event == 'Delete'){
+      if(result.event == 'Delete'){
         this.deleteRowData(result.data);
       }
     });
   }
 
-  addRowData(row_obj : any){
-    var d = new Date();
-    this.dataSource.push({
-      id:d.getTime(),
-      name:row_obj.name
-    });
-    this.table && this.table.renderRows();
-  }
-  
-  updateRowData(row_obj: any){
-    this.dataSource = this.dataSource.filter((value,key)=>{
-      if(value.id == row_obj.id){
-        value.name = row_obj.name;
-      }
-      return true;
-    });
+  deleteRowData(row_obj: any){
+   /* this.dataSource = this.dataSource.filter((value: any,key: any)=>{
+      return value.id != row_obj.id;
+    });*/
   }
 
-  deleteRowData(row_obj: any){
-    this.dataSource = this.dataSource.filter((value,key)=>{
-      return value.id != row_obj.id;
+  pageChanged = ($pageEvent: PageEvent) => { 
+    this.pageSize = $pageEvent.pageSize;
+    this.currentPage = $pageEvent.pageIndex;
+    this.fileopsService.getFiles(this.currentPage,this.pageSize).subscribe((event: any)=>{
+      if(event.status==200) {
+        this.dataSource = event.body? event.body.records: [];
+        this.pageSize = event.body?.no_of_records;
+        this.paginator.pageIndex = this.currentPage;
+      }
     });
+  } 
+
+  goToContentPage = ($clickEvent : any) => {
+    if (!$clickEvent.action) {
+      let route = `/file-content/${$clickEvent.file_id}`;
+      this.router.navigate([route], {});
+    }
   }
 
   upload(): void {
@@ -120,7 +129,11 @@ export class UploadfileComponent {
               if (event.status==200) {
                 this.message = "File uploaded Successfully"
               }
-              this.fileInfos = this.fileopsService.getFiles(0,10);
+              this.fileopsService.getFiles(0,10).subscribe((event: any)=>{
+                if(event.status==200) {
+                  this.dataSource = event.body? event.body.records: [];
+                }
+              });
             }
           },
           (err: any) => {

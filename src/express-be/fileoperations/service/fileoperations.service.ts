@@ -28,4 +28,7 @@ export class FileOperationsService {
       return fileOperationsRepository.getMetaData(page_no,page_size);
     }
 
+    getContent = (file_id: string) => {
+      return fileOperationsRepository.getContent(file_id);
+    }
 }

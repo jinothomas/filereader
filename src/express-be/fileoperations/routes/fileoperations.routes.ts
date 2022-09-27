@@ -12,8 +12,8 @@ const upload = multer({ dest: os.tmpdir() });
 const fileoperations = express.Router();
 
 fileoperations.get('/files', (request : any, response: any) => {
-    const page_no = request.params.page_no;
-    const page_size = request.params.page_size;
+    const page_no = parseInt(request.query.page_no);
+    const page_size =  parseInt(request.query.page_size);
     
     fileopsService.getFileMetaData(page_no,page_size).then((data: any)=> {
       response.send(data);
@@ -36,6 +36,18 @@ fileoperations.post('/uploadfile', upload.single('file'),(request: any, response
     } catch (error) {
         handleHttpError(error);
     }
+});
+
+fileoperations.get('/content/:file_id', (request : any, response: any) => {
+  const page_no = parseInt(request.query.page_no);
+  const page_size =  parseInt(request.query.page_size);
+  
+  fileopsService.getContent(request.params.file_id).then((data: any)=> {
+    response.send(data);
+  }).catch((error)=> {
+    response.send(error);
+  })
+  
 });
 
 

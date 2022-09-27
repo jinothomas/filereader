@@ -59,6 +59,14 @@ export interface MetadataResponse {
 }
 
 
+export interface ContentResponse {
+  records : any,
+  status: STATUS_CODES,
+  status_text : string,
+  no_of_records: number,
+  total_records?: number
+}
+
 export interface UploadFileResponse {
   body: string,
   status: STATUS_CODES.CREATED,

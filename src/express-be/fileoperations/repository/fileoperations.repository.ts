@@ -1,6 +1,6 @@
 import { FindOptions } from "mongodb";
 import { STATUS_CODES } from "../../shared/models/shared.enums";
-import { MetadataResponse, Record, UploadFileResponse } from "../../shared/models/shared.model";
+import { ContentResponse, MetadataResponse, Record, UploadFileResponse } from "../../shared/models/shared.model";
 import { collections } from "../../shared/utils/db.connector";
 import { handleHttpError } from "../../shared/utils/response-handler";
 import { mapMetaData } from "../utils/fileoperations.helper";
@@ -38,6 +38,27 @@ export class FileOperationsRepository {
         .toArray()
         .then((data) => {
           const response: MetadataResponse = {
+            records: data,
+            status: STATUS_CODES.OK,
+            status_text: "OK",
+            no_of_records: data ? data.length : 0,
+          };
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
+  getContent = (file_id: string) => {
+ 
+     return new Promise((resolve, reject) => {
+      collections.records
+        ?.find({file_id}, {})
+        .toArray()
+        .then((data) => {
+          const response: ContentResponse = {
             records: data,
             status: STATUS_CODES.OK,
             status_text: "OK",

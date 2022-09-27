@@ -28,11 +28,13 @@ export class FileOperationsService {
     return this.http.request(request);
   };
 
-  getFiles(page_no: number , page_size: number): Observable<any> {
-    const params = new HttpParams();
-    params.set("page_no", page_no);
-    params.set("page_size", page_size);
+  getFiles = (page_no: number , page_size: number): Observable<any> => {
+    const request = new HttpRequest('GET',`/filereader/fileoperations/files`,{params : new HttpParams().set("page_no", page_no).set("page_size", page_size) });
+    return this.http.request(request);
+  }
 
-    return this.http.get(`/filereader/fileoperations/files`, { params });
+  getContents = (file_id: any): Observable<any> => {
+    const request = new HttpRequest('GET',`/filereader/fileoperations/content/${file_id}`,{});
+    return this.http.request(request);
   }
 }
