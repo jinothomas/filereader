@@ -16,8 +16,6 @@ import { Router } from '@angular/router';
 })
 export class UploadfileComponent implements AfterViewInit{
   
-
-  displayedColumns1: string[] = ['id', 'name', 'action'];
   displayedColumns: string[] = ['file_id', 'file_name', 'created_on','created_by','file_size','accessmodifier','action'];
   dataSource = new MatTableDataSource<any>(); 
   selectedFiles?: FileList;
