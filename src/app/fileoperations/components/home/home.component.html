@@ -1,47 +1,78 @@
-<div class="page-title"><h1>Dashboard</h1></div>
+<div class="page-title"><h1>Super Admin Dashboard</h1></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm">
-            <mat-card class="uploadfile-card">
+            <mat-card>
                 <mat-card-title>Success Rate</mat-card-title>
                 <mat-card-subtitle>Success rate for the last 100 records</mat-card-subtitle>
                 <mat-card-content>
-                  <ul>
-                    <li>Currently, Filereader accepts CSV files only.</li>
-                    <li>A user can select the file from the system by using the file input</li>
-                    <li> Click on Upload button.</li>
-                    <li>On successful upload, the user will be notified. Click on <i>View Files</i> to view the uploaded files.</li>
-                    <li>If the operation fails, then check the error message and retry. If the problem persists, contact the system administrator.</li>
-                    <li>Click on <mat-icon>refresh</mat-icon> to clear the file input/ for a new upload</li>
-                  </ul>
+                    <app-piechart></app-piechart>
                 </mat-card-content>          
               </mat-card>
             
         </div>
         <div class="col-sm">
-            <mat-card class="uploadfile-card">
-                <mat-card-title>Usage</mat-card-title>
-                <mat-card-subtitle>Usage report for the past one year</mat-card-subtitle>
+            <mat-card>
+                <mat-card-title>Usage 2022</mat-card-title>
+                <mat-card-subtitle>Usage report for the current year</mat-card-subtitle>
                 <mat-card-content>
-                  <ul>
-                    <li>Currently, Filereader accepts CSV files only.</li>
-                    <li>A user can select the file from the system by using the file input</li>
-                    <li> Click on Upload button.</li>
-                    <li>On successful upload, the user will be notified. Click on <i>View Files</i> to view the uploaded files.</li>
-                    <li>If the operation fails, then check the error message and retry. If the problem persists, contact the system administrator.</li>
-                    <li>Click on <mat-icon>refresh</mat-icon> to clear the file input/ for a new upload</li>
-                  </ul>
+                  <app-barchart></app-barchart>
                 </mat-card-content>          
-              </mat-card>
-            
+            </mat-card>
+        </div>
+        <div class="col-sm">
+          <mat-card>
+            <mat-card-title>Database statistics</mat-card-title>
+            <mat-card-subtitle>Total Database consumption</mat-card-subtitle>
+            <mat-card-content>
+              <app-horizontalchart></app-horizontalchart>
+            </mat-card-content>          
+          </mat-card>
         </div>
     </div>
+<div class="row">
+  <div class="col-lg">
+    <mat-card class="table-card">
+      <mat-card-title>Administrators</mat-card-title>
+      <mat-card-subtitle>Users with Admin rights</mat-card-subtitle>
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" class="my-table mat-elevation-z8">
+  
+          <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+          <!-- Id Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> Phone</th>
+            <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef> Role </th>
+            <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="validity">
+            <th mat-header-cell *matHeaderCellDef> Valid till </th>
+            <td mat-cell *matCellDef="let element"> {{element.validity}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>          
+    </mat-card>
+  </div>
 </div>
-
-<div class="footer">
-    <div class="row">
-      <div class="col-sm"><a href="https://jinothomas.github.io/mysite/"><p class="footer-text">jinothomas</p></a></div>
-      <div class="col-sm"><a [routerLink]="['view-files']"><p class="footer-text">Filereader beta</p></a></div>
-      <div class="col-sm"><a href="https://github.com/jinothomas/"><p class="footer-text">github.com/jinothomas</p></a></div>
-    </div>
 </div>

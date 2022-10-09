@@ -24,9 +24,13 @@ import { HomeComponent } from './fileoperations/components/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FileContentComponent } from './fileoperations/components/file-content/file-content.component';
 import { ViewFilesComponent } from './fileoperations/components/view-files/view-files.component';  
+import { ChartsModule } from 'ng2-charts';
+import { PiechartComponent } from './plugins/piechart/piechart.component';
+import { BarchartComponent } from './plugins/barchart/barchart.component';
+import { HorizontalchartComponent } from './plugins/horizontalchart/horizontalchart.component';
 
 @NgModule({
-  declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent, FileContentComponent, ViewFilesComponent],
+  declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent, FileContentComponent, ViewFilesComponent, PiechartComponent, BarchartComponent, HorizontalchartComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,7 +49,8 @@ import { ViewFilesComponent } from './fileoperations/components/view-files/view-
     MatCardModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
