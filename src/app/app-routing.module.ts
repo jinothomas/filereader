@@ -4,12 +4,14 @@ import { FileContentComponent } from "./fileoperations/components/file-content/f
 import { HomeComponent } from "./fileoperations/components/home/home.component";
 import { ProfileComponent } from "./fileoperations/components/profile/profile.component";
 import { UploadfileComponent } from "./fileoperations/components/upload-file/uploadfile.component";
+import { ViewFilesComponent } from "./fileoperations/components/view-files/view-files.component";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "profile", component: ProfileComponent },
   { path: "upload-file", component: UploadfileComponent },
-  { path: "file-content/:file_id", component: FileContentComponent}
+  { path: "file-content/:file_id", component: FileContentComponent},
+  { path: "view-files", component: ViewFilesComponent}
 ];
 
 @NgModule({

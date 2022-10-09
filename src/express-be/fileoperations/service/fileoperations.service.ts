@@ -31,4 +31,9 @@ export class FileOperationsService {
     getContent = (file_id: string) => {
       return fileOperationsRepository.getContent(file_id);
     }
+
+
+    deleteFile = (file_id: string) => {
+      return fileOperationsRepository.deleteFile(file_id);
+    }
 }

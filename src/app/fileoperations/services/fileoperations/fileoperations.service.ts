@@ -33,8 +33,52 @@ export class FileOperationsService {
     return this.http.request(request);
   }
 
-  getContents = (file_id: any): Observable<any> => {
+  getContents = (file_id: string): Observable<any> => {
     const request = new HttpRequest('GET',`/filereader/fileoperations/content/${file_id}`,{});
     return this.http.request(request);
+  }
+
+  deleteFile = (file_id: string): Observable<any> => {
+    const request = new HttpRequest('DELETE',`/filereader/fileoperations/${file_id}`,{});
+    return this.http.request(request);
+  }
+
+  getRecent = (): Observable<any> => {
+    const records = [{
+      'file_id' : "FR1234",
+      'file_name':  "Test_File.csv",
+      'performed_on': "24-07-21",
+      'performed_by': "Jino Thomas",
+      'result': "SUCCESS"
+    },{
+      'file_id' : "FR1235",
+      'file_name':  "Test_File.csv",
+      'performed_on': "24-07-21",
+      'performed_by': "Jino Thomas",
+      'result': "SUCCESS"
+    },{
+      'file_id' : "FR1236",
+      'file_name':  "Test_File.csv",
+      'performed_on': "24-07-21",
+      'performed_by': "Jino Thomas",
+      'result': "SUCCESS"
+    },{
+      'file_id' : "FR1237",
+      'file_name':  "Test_File.csv",
+      'performed_on': "24-07-21",
+      'performed_by': "Jino Thomas",
+      'result': "SUCCESS"
+    },{
+      'file_id' : "FR1238",
+      'file_name':  "Test_File.csv",
+      'performed_on': "24-07-21",
+      'performed_by': "Jino Thomas",
+      'result': "FAILURE"
+    }];
+
+    return new Observable((subscriber)=> {
+      subscriber.next(records);
+      subscriber.complete();
+    })
   }
 }

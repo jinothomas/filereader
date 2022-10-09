@@ -16,6 +16,11 @@ label{
     color:rgb(114, 114, 114);
 }
 
+table {
+    width: 100%;
+    position: relative;
+}
+
 .mat-button {
     background-color: rgb(0 43 92);
     color: rgb(255, 255, 255);
@@ -28,23 +33,7 @@ label{
     margin-left: 10px;
  }
 
-  .uploadfile-card {
-    max-width: 100%;
-    margin-top: 20px;
-    height: 100%;
+ .mat-row:hover {
+    background-color: #E8EAF6;
+    cursor: pointer;
   }
-
-  .fileinput-card {
-    max-width: 100%;
-    margin-top: 20px;
-    height: 50%;
-  }
-
-  li {
-    margin-top: 5px;
-  }
-  
-  table {
-    width: 100%;
-    position: relative;
-}

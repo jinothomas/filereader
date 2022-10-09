@@ -1,7 +1,7 @@
 import { Observable, throwError } from 'rxjs';
 
-export const handleHttpError = (error: any): Observable<any> => {
+export const handleHttpError = (error: any) => {
     let errorMessage: string = error.message;
-    return throwError(errorMessage ? errorMessage : error);
+    throw new Error(errorMessage ? errorMessage : error);
 };
   

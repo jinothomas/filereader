@@ -33,7 +33,7 @@ export class DialogBoxComponent {
   }
 
   closeDialog(){
-    this.dialogRef.close({event:'Cancel'});
+    this.dialogRef.close({event:'Close'});
   }
 
 }

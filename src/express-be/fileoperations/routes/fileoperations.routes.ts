@@ -50,5 +50,14 @@ fileoperations.get('/content/:file_id', (request : any, response: any) => {
   
 });
 
+fileoperations.delete('/:file_id', (request : any, response: any) => {
+  fileopsService.deleteFile(request.params.file_id).then((data: any)=> {
+    response.send(data);
+  }).catch((error)=> {
+    response.send(error);
+  })
+  
+});
+
 
 export default fileoperations;

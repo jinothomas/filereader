@@ -15,16 +15,18 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDividerModule } from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
 import { MatPaginatorModule  } from '@angular/material/paginator';
 import { DialogBoxComponent } from "./fileoperations/components/dialog-box/dialog-box.component";
 import { UploadfileComponent } from "./fileoperations/components/upload-file/uploadfile.component";
 import { ProfileComponent } from './fileoperations/components/profile/profile.component';
 import { HomeComponent } from './fileoperations/components/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
-import { FileContentComponent } from './fileoperations/components/file-content/file-content.component';  
+import { FileContentComponent } from './fileoperations/components/file-content/file-content.component';
+import { ViewFilesComponent } from './fileoperations/components/view-files/view-files.component';  
 
 @NgModule({
-  declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent, FileContentComponent],
+  declarations: [AppComponent, DialogBoxComponent, UploadfileComponent, ProfileComponent, HomeComponent, FileContentComponent, ViewFilesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -40,6 +42,7 @@ import { FileContentComponent } from './fileoperations/components/file-content/f
     MatSidenavModule,
     MatIconModule,
     MatDividerModule,
+    MatCardModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule

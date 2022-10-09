@@ -1,1 +1,47 @@
-<h1>My Home</h1>
+<div class="page-title"><h1>Dashboard</h1></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <mat-card class="uploadfile-card">
+                <mat-card-title>Success Rate</mat-card-title>
+                <mat-card-subtitle>Success rate for the last 100 records</mat-card-subtitle>
+                <mat-card-content>
+                  <ul>
+                    <li>Currently, Filereader accepts CSV files only.</li>
+                    <li>A user can select the file from the system by using the file input</li>
+                    <li> Click on Upload button.</li>
+                    <li>On successful upload, the user will be notified. Click on <i>View Files</i> to view the uploaded files.</li>
+                    <li>If the operation fails, then check the error message and retry. If the problem persists, contact the system administrator.</li>
+                    <li>Click on <mat-icon>refresh</mat-icon> to clear the file input/ for a new upload</li>
+                  </ul>
+                </mat-card-content>          
+              </mat-card>
+            
+        </div>
+        <div class="col-sm">
+            <mat-card class="uploadfile-card">
+                <mat-card-title>Usage</mat-card-title>
+                <mat-card-subtitle>Usage report for the past one year</mat-card-subtitle>
+                <mat-card-content>
+                  <ul>
+                    <li>Currently, Filereader accepts CSV files only.</li>
+                    <li>A user can select the file from the system by using the file input</li>
+                    <li> Click on Upload button.</li>
+                    <li>On successful upload, the user will be notified. Click on <i>View Files</i> to view the uploaded files.</li>
+                    <li>If the operation fails, then check the error message and retry. If the problem persists, contact the system administrator.</li>
+                    <li>Click on <mat-icon>refresh</mat-icon> to clear the file input/ for a new upload</li>
+                  </ul>
+                </mat-card-content>          
+              </mat-card>
+            
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="row">
+      <div class="col-sm"><a href="https://jinothomas.github.io/mysite/"><p class="footer-text">jinothomas</p></a></div>
+      <div class="col-sm"><a [routerLink]="['view-files']"><p class="footer-text">Filereader beta</p></a></div>
+      <div class="col-sm"><a href="https://github.com/jinothomas/"><p class="footer-text">github.com/jinothomas</p></a></div>
+    </div>
+</div>

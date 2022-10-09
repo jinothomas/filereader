@@ -69,7 +69,14 @@ export interface ContentResponse {
 
 export interface UploadFileResponse {
   body: string,
-  status: STATUS_CODES.CREATED,
+  status: STATUS_CODES,
+  status_text : string,
+  message: string,
+}
+
+export interface RemoveFileResponse {
+  body: string,
+  status: STATUS_CODES,
   status_text : string,
   message: string,
 }

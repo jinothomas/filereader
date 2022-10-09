@@ -1,6 +1,6 @@
 import { FindOptions } from "mongodb";
 import { STATUS_CODES } from "../../shared/models/shared.enums";
-import { ContentResponse, MetadataResponse, Record, UploadFileResponse } from "../../shared/models/shared.model";
+import { ContentResponse, MetadataResponse, Record, RemoveFileResponse, UploadFileResponse } from "../../shared/models/shared.model";
 import { collections } from "../../shared/utils/db.connector";
 import { handleHttpError } from "../../shared/utils/response-handler";
 import { mapMetaData } from "../utils/fileoperations.helper";
@@ -71,4 +71,32 @@ export class FileOperationsRepository {
         });
     });
   };
+
+
+  deleteFile = (file_id: string) => {
+    
+    return new Promise((resolve, reject) => {
+      const query = {file_id}
+      collections.records?.deleteOne(query).catch((error) => {
+        reject(handleHttpError(error));
+      });
+      collections.metadata?.deleteOne(query)
+        .then((data) => {
+          if (data.deletedCount>0) {
+            const response: RemoveFileResponse = {
+              body: `file_id: ${file_id}`,
+              status: STATUS_CODES.OK,
+              status_text: "DELETED",
+              message: "File Deleted Successfully",
+            };
+            resolve(response);
+          }else {
+            reject(`No Record Found/ Unable to delete: ${file_id}`);
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+ };
 }
